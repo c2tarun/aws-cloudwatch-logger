@@ -7,7 +7,7 @@
 */
 
 const axios = require('axios')
-const aws4 = require('aws4')
+const aws4 = require('aws4-react-native')
 
 const getRequestParams = (method, region, payload, keys = {}) => {
   if (!region)
