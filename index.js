@@ -40,7 +40,7 @@ const getRequestParams = (method, region, payload, keys = {}) => {
   }
 }
 
-const createLogStream = (logStreamName, {logGroupName, region, accessKeyId, secretAccessKey, local}) => {
+const createLogStream = (logStreamName, {logGroupName, region, accessKeyId, secretAccessKey, sessionToken = null, local}) => {
   if (local && local != 'false')
     return Promise.resolve({message: 'No need to create stream. Local mode is on.'})
 
@@ -61,7 +61,7 @@ const createLogStream = (logStreamName, {logGroupName, region, accessKeyId, secr
     logStreamName: logStreamName
   }
 
-  const {uri, headers} = getRequestParams(service, region, payload, {accessKeyId, secretAccessKey})
+  const {uri, headers} = getRequestParams(service, region, payload, {accessKeyId, secretAccessKey, sessionToken})
 
   const request = axios.create({
     baseURL: uri,
